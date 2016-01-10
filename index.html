@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Llanos GEE App</title>
+    <meta charset="utf-8">
+
+    <!-- Support for browsers on mobile phones. -->
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!-- Google Web Fonts. -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed'
+          rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Lobster'
+          rel='stylesheet' type='text/css'>
+
+    <!-- Custom CSS styles for our application. -->
+    <link rel="stylesheet" href="/static/style.css">
+
+    <!-- The Google JavaScript loader tool (for the Maps, Charts APIs). -->
+    <script src="https://www.google.com/jsapi"></script>
+
+    <!-- Our custom JavaScript for Trendy Lights. -->
+    <script src="/static/script.js"></script>
+
+  </head>
+  <body>
+
+    <!-- The DOM of our application. -->
+    <div class="trendy">
+
+      <!-- The title of the application. -->
+      <h1> </h1>
+
+      <!-- A container which the Maps API will populate with a map. -->
+      <div class="map"></div>
+
+      <!-- The panel to show details about a place. -->
+      <div class="panel" draggable="true">
+
+  <div id='map-optionbar-r'>
+    <strong>Layers</strong> <br /><br />   
+    
+    <input type="checkbox" id="myCheckPoly" checked="true"> - Llanos boundary <br /><br />
+    
+    <!-- <input type="checkbox" id="myCheck2016" >               - 2016 : SR&nbsp;&nbsp;&nbsp; - L5, L7  <br /> -->
+    <!-- <input type="checkbox" id="myCheck2015" >               - 2015 : SR&nbsp;&nbsp;&nbsp; - L5, L7  <br /> -->
+    <!--<input type="checkbox" id="myCheck2014" >               - 2014 : TOA - L8   <br /> 
+    <input type="checkbox" id="myCheck2013" >               - 2013 : TOA - L8   <br /> 
+    <input type="checkbox" id="myCheck2012" >               - 2012 : SR&nbsp;&nbsp;&nbsp; - L7  <br />
+    <input type="checkbox" id="myCheck2011" >               - 2011 : SR&nbsp;&nbsp;&nbsp; - L5, L7  <br />
+    <input type="checkbox" id="myCheck2010" >               - 2010 : SR&nbsp;&nbsp;&nbsp; - L5, L7  <br />
+    <input type="checkbox" id="myCheck2009" >               - 2009 : SR&nbsp;&nbsp;&nbsp; - L5, L7  <br />
+    <input type="checkbox" id="myCheck2008" >               - 2008 : SR&nbsp;&nbsp;&nbsp; - L5, L7  <br />
+    <input type="checkbox" id="myCheck2007" >               - 2007 : SR&nbsp;&nbsp;&nbsp; - L5, L7  <br />
+    <input type="checkbox" id="myCheck2006" >               - 2006 : SR&nbsp;&nbsp;&nbsp; - L5, L7  <br />
+    <input type="checkbox" id="myCheck2005" >               - 2005 : SR&nbsp;&nbsp;&nbsp; - L5, L7  <br />-->
+    <input type="checkbox" id="myCheck2004" >               - 2004 : SR&nbsp;&nbsp;&nbsp; - L5, L7  <br />
+    <!--<input type="checkbox" id="myCheck2003" >               - 2003 : SR&nbsp;&nbsp;&nbsp; - L5, L7  <br />
+    <input type="checkbox" id="myCheck2002" >               - 2002 : SR&nbsp;&nbsp;&nbsp; - L5, L7  <br />
+    <input type="checkbox" id="myCheck2001" >               - 2001 : SR&nbsp;&nbsp;&nbsp; - L5, L7  <br />-->
+    <input type="checkbox" id="myCheck2000" checked="true"> - 2000 : SR&nbsp;&nbsp;&nbsp; - L5, L7  <br /><br />
+    
+    See more <a href="https://docs.google.com/spreadsheets/d/1HMtOeW7eo_KRrg6BND2eItIp7VS1p0e_YWS3_YHaYEM/edit#gid=0" target="_blank">info here</a>.
+
+  </div> 
+  
+
+
+        <!-- The button to toggle the panel expanded/collapsed. Mobile-only. -->
+        <div class="toggler">toggle</div>
+
+        <!-- The button to close the panel. Desktop-only. -->
+        <!-- <div class="close">close</div> -->
+
+        <!-- The title of the place for which details are being shown. -->
+        <h2 class="title"></h2>
+
+        <!-- A scrollable container for details about the polygon. -->
+        <div class="details">
+
+          <!-- A container which the Charts API will populate. -->
+          <div class="chart"></div>
+
+          <!-- The link to the polygon's Wikipedia page. -->
+          <a class="wiki-url"></a>
+
+          <!-- The element to hold the error message. -->
+          <p class="error"></p>
+        </div>
+      </div>
+
+      <a href="https://earthengine.google.org">
+        <img class="powered-by-ee"
+             alt="Powered by Google Earth Engine"
+             src="/static/google_earthengine_powered_400px.png">
+      </a>
+    </div>
+
+    <!-- Boot our JavaScript once the body has loaded. -->
+    <script>
+      trendy.boot(
+          '{{ eeMapId_2000 | safe }}',
+          '{{ eeToken_2000 | safe }}',
+          '{{ eeMapId_2001 | safe }}',
+          '{{ eeToken_2001 | safe }}',
+          '{{ eeMapId_2002 | safe }}',
+          '{{ eeToken_2002 | safe }}',
+          '{{ eeMapId_2003 | safe }}',
+          '{{ eeToken_2003 | safe }}',
+          '{{ eeMapId_2004 | safe }}',
+          '{{ eeToken_2004 | safe }}',
+          '{{ eeMapId_2005 | safe }}',
+          '{{ eeToken_2005 | safe }}',
+          '{{ eeMapId_2006 | safe }}',
+          '{{ eeToken_2006 | safe }}',
+          '{{ eeMapId_2007 | safe }}',
+          '{{ eeToken_2007 | safe }}',
+          '{{ eeMapId_2008 | safe }}',
+          '{{ eeToken_2008 | safe }}',
+          '{{ eeMapId_2009 | safe }}',
+          '{{ eeToken_2009 | safe }}',
+          '{{ eeMapId_2010 | safe }}',
+          '{{ eeToken_2010 | safe }}',
+          '{{ eeMapId_2011 | safe }}',
+          '{{ eeToken_2011 | safe }}',
+          '{{ eeMapId_2012 | safe }}',
+          '{{ eeToken_2012 | safe }}',
+          '{{ eeMapId_2013 | safe }}',
+          '{{ eeToken_2013 | safe }}',
+          '{{ eeMapId_2014 | safe }}',
+          '{{ eeToken_2014 | safe }}',
+          /*'{{ eeMapId_2015 | safe }}',*/
+          /*'{{ eeToken_2015 | safe }}',*/
+          /*'{{ eeMapId_2016 | safe }}',*/
+          /*'{{ eeToken_2016 | safe }}',*/
+          '{{ serializedPolygonIds | safe }}');
+    </script>
+
+  </body>
+</html>
